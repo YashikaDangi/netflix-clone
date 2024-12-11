@@ -68,6 +68,7 @@ const Container = styled.div`
   .scrolled {
     background-color: black;
   }
+
   nav {
     position: sticky;
     top: 0;
@@ -80,6 +81,7 @@ const Container = styled.div`
     padding: 0 4rem;
     align-items: center;
     transition: 0.3s ease-in-out;
+
     .left {
       gap: 2rem;
       .brand {
@@ -87,6 +89,7 @@ const Container = styled.div`
           height: 4rem;
         }
       }
+
       .links {
         list-style-type: none;
         gap: 2rem;
@@ -98,8 +101,10 @@ const Container = styled.div`
         }
       }
     }
+
     .right {
       gap: 1rem;
+
       button {
         background-color: transparent;
         border: none;
@@ -112,6 +117,7 @@ const Container = styled.div`
           font-size: 1.2rem;
         }
       }
+
       .search {
         display: flex;
         gap: 0.4rem;
@@ -119,6 +125,7 @@ const Container = styled.div`
         justify-content: center;
         padding: 0.2rem;
         padding-left: 0.5rem;
+
         button {
           background-color: transparent;
           border: none;
@@ -130,6 +137,7 @@ const Container = styled.div`
             font-size: 1.2rem;
           }
         }
+
         input {
           width: 0;
           opacity: 0;
@@ -143,6 +151,7 @@ const Container = styled.div`
           }
         }
       }
+
       .show-search {
         border: 1px solid white;
         background-color: rgba(0, 0, 0, 0.6);
@@ -151,6 +160,80 @@ const Container = styled.div`
           opacity: 1;
           visibility: visible;
           padding: 0.3rem;
+        }
+      }
+    }
+  }
+
+  /* Media query for tablets and smaller devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 2rem;
+
+      .left {
+        .brand img {
+          height: 3.5rem; /* Adjust logo size */
+        }
+
+        .links {
+          display: none; /* Hide links on smaller screens */
+        }
+      }
+
+      .right {
+        gap: 0.5rem;
+
+        .search {
+          display: flex;
+          gap: 0.5rem;
+          input {
+            width: 150px; /* Show search input with limited width */
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        .show-search {
+          display: block;
+        }
+      }
+    }
+  }
+
+  /* Media query for mobile devices (max-width: 480px) */
+  @media (max-width: 480px) {
+    nav {
+      padding: 0 1rem;
+
+      .left {
+        .brand img {
+          height: 3rem; /* Smaller logo on mobile */
+        }
+
+        .links {
+          display: none; /* Hide links on mobile */
+        }
+      }
+
+      .right {
+        gap: 0.3rem;
+
+        .search {
+          button {
+            svg {
+              font-size: 1.1rem; /* Smaller search icon */
+            }
+          }
+
+          input {
+            width: 120px; /* Further limit the width of the search bar */
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        .show-search {
+          display: block;
         }
       }
     }

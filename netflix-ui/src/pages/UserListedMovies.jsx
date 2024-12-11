@@ -59,12 +59,48 @@ const Container = styled.div`
     margin: 2.3rem;
     margin-top: 8rem;
     gap: 3rem;
+
     h1 {
       margin-left: 3rem;
     }
+
     .grid {
+      display: flex; /* Ensure the grid uses flexbox */
       flex-wrap: wrap;
       gap: 1rem;
     }
   }
+
+  /* Media query for tablets and smaller devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    .content {
+      margin: 2rem;
+      margin-top: 6rem; /* Adjust margin-top for smaller screens */
+    }
+
+    h1 {
+      margin-left: 2rem; /* Reduce margin-left for smaller screens */
+    }
+
+    .grid {
+      gap: 0.8rem; /* Reduce gap between items for smaller screens */
+    }
+  }
+
+  /* Media query for mobile devices (max-width: 480px) */
+  @media (max-width: 480px) {
+    .content {
+      margin: 1rem;
+      margin-top: 4rem; /* Further reduce margin-top for mobile */
+    }
+
+    h1 {
+      margin-left: 1rem; /* Further reduce margin-left for mobile */
+    }
+
+    .grid {
+      gap: 0.5rem; /* Further reduce gap for mobile */
+    }
+  }
 `;
+

@@ -58,11 +58,37 @@ function MoviePage() {
 const Container = styled.div`
   .data {
     margin-top: 8rem;
+
     .not-available {
       text-align: center;
       color: white;
       margin-top: 4rem;
     }
   }
+
+  /* Media query for tablets and smaller screens (max-width: 768px) */
+  @media (max-width: 768px) {
+    .data {
+      margin-top: 6rem;
+
+      .not-available {
+        margin-top: 3rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  /* Media query for mobile screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    .data {
+      margin-top: 4rem;
+
+      .not-available {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
 `;
+
 export default MoviePage;

@@ -22,6 +22,7 @@ const Container = styled.div`
   .player {
     width: 100vw;
     height: 100vh;
+
     .back {
       position: absolute;
       padding: 2rem;
@@ -31,10 +32,39 @@ const Container = styled.div`
         cursor: pointer;
       }
     }
+
     video {
       height: 100%;
       width: 100%;
       object-fit: cover;
+    }
+  }
+
+  /* Media query for tablets and smaller devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    .player {
+      .back {
+        padding: 1.5rem; /* Reduce padding for tablets */
+        svg {
+          font-size: 2.5rem; /* Smaller back button icon on tablets */
+        }
+      }
+    }
+  }
+
+  /* Media query for mobile devices (max-width: 480px) */
+  @media (max-width: 480px) {
+    .player {
+      .back {
+        padding: 1rem; /* Further reduce padding for mobile */
+        svg {
+          font-size: 2rem; /* Smaller back button icon on mobile */
+        }
+      }
+
+      video {
+        object-fit: contain; /* Ensure the video fits better on mobile without cropping */
+      }
     }
   }
 `;

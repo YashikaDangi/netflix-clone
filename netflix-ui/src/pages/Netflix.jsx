@@ -75,18 +75,24 @@ function Netflix() {
 
 const Container = styled.div`
   background-color: black;
+
   .hero {
     position: relative;
+
     .background-image {
       filter: brightness(60%);
     }
+
     img {
       height: 100vh;
       width: 100vw;
+      object-fit: cover; /* Ensure the image covers the screen without distortion */
     }
+
     .container {
       position: absolute;
       bottom: 5rem;
+
       .logo {
         img {
           width: 100%;
@@ -94,9 +100,11 @@ const Container = styled.div`
           margin-left: 5rem;
         }
       }
+
       .buttons {
         margin: 5rem;
         gap: 2rem;
+
         button {
           font-size: 1.4rem;
           gap: 1rem;
@@ -107,12 +115,15 @@ const Container = styled.div`
           border: none;
           cursor: pointer;
           transition: 0.2s ease-in-out;
+
           &:hover {
             opacity: 0.8;
           }
+
           &:nth-of-type(2) {
             background-color: rgba(109, 109, 110, 0.7);
             color: white;
+
             svg {
               font-size: 1.8rem;
             }
@@ -121,5 +132,52 @@ const Container = styled.div`
       }
     }
   }
+
+  /* Media query for tablets and smaller devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    .hero {
+      .container {
+        bottom: 3rem; /* Adjust bottom position for smaller screens */
+      }
+
+      .buttons {
+        margin: 3rem; /* Reduce margin for tablets */
+        gap: 1.5rem;
+
+        button {
+          font-size: 1.2rem; /* Smaller font size for tablets */
+          padding: 0.4rem;
+          padding-left: 1.8rem;
+          padding-right: 2rem;
+        }
+      }
+    }
+  }
+
+  /* Media query for mobile devices (max-width: 480px) */
+  @media (max-width: 480px) {
+    .hero {
+      .container {
+        bottom: 2rem; /* Further reduce bottom position on mobile */
+      }
+
+      .buttons {
+        margin: 2rem; /* Further reduce margin on mobile */
+        gap: 1rem;
+
+        button {
+          font-size: 1rem; /* Smaller font size on mobile */
+          padding: 0.3rem;
+          padding-left: 1.5rem;
+          padding-right: 1.8rem;
+        }
+      }
+    }
+
+    img {
+      height: 70vh; /* Reduce image height for mobile */
+    }
+  }
 `;
+
 export default Netflix;

@@ -65,10 +65,34 @@ function TVShows() {
 const Container = styled.div`
   .data {
     margin-top: 8rem;
+
     .not-available {
       text-align: center;
       margin-top: 4rem;
     }
   }
+
+  /* Media query for tablets and smaller devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    .data {
+      margin-top: 6rem; /* Adjust margin-top for smaller screens */
+    }
+
+    .not-available {
+      margin-top: 3rem; /* Adjust margin-top for smaller screens */
+    }
+  }
+
+  /* Media query for mobile devices (max-width: 480px) */
+  @media (max-width: 480px) {
+    .data {
+      margin-top: 4rem; /* Further reduce margin-top for mobile */
+    }
+
+    .not-available {
+      margin-top: 2rem; /* Further reduce margin-top for mobile */
+    }
+  }
 `;
+
 export default TVShows;

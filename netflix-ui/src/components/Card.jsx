@@ -112,12 +112,14 @@ const Container = styled.div`
   height: 100%;
   cursor: pointer;
   position: relative;
+
   img {
     border-radius: 0.2rem;
     width: 100%;
     height: 100%;
     z-index: 10;
   }
+
   .hover {
     z-index: 99;
     height: max-content;
@@ -129,9 +131,11 @@ const Container = styled.div`
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
     transition: 0.3s ease-in-out;
+
     .image-video-container {
       position: relative;
       height: 140px;
+
       img {
         width: 100%;
         height: 140px;
@@ -141,6 +145,7 @@ const Container = styled.div`
         z-index: 4;
         position: absolute;
       }
+
       video {
         width: 100%;
         height: 140px;
@@ -151,31 +156,118 @@ const Container = styled.div`
         position: absolute;
       }
     }
+
     .info-container {
       padding: 1rem;
       gap: 0.5rem;
     }
+
     .icons {
       .controls {
         display: flex;
         gap: 1rem;
       }
+
       svg {
         font-size: 2rem;
         cursor: pointer;
         transition: 0.3s ease-in-out;
+
         &:hover {
           color: #b8b8b8;
         }
       }
     }
+
     .genres {
       ul {
         gap: 1rem;
+
         li {
           padding-right: 0.7rem;
+
           &:first-of-type {
             list-style-type: none;
+          }
+        }
+      }
+    }
+  }
+
+  /* Media query for tablets and smaller devices (max-width: 768px) */
+  @media (max-width: 768px) {
+    max-width: 180px;
+    width: 180px;
+
+    .hover {
+      width: 15rem;
+      top: -14vh;
+
+      .image-video-container {
+        height: 120px;
+
+        img,
+        video {
+          height: 120px;
+        }
+      }
+
+      .icons {
+        .controls {
+          gap: 0.8rem;
+        }
+
+        svg {
+          font-size: 1.5rem;
+        }
+      }
+
+      .genres {
+        ul {
+          gap: 0.8rem;
+
+          li {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+
+  /* Media query for mobile devices (max-width: 480px) */
+  @media (max-width: 480px) {
+    max-width: 150px;
+    width: 150px;
+
+    .hover {
+      width: 12rem;
+      top: -10vh;
+
+      .image-video-container {
+        height: 100px;
+
+        img,
+        video {
+          height: 100px;
+        }
+      }
+
+      .icons {
+        .controls {
+          gap: 0.5rem;
+        }
+
+        svg {
+          font-size: 1.2rem;
+        }
+      }
+
+      .genres {
+        ul {
+          gap: 0.5rem;
+
+          li {
+            font-size: 0.8rem;
           }
         }
       }
