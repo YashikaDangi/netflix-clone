@@ -17,6 +17,7 @@ function Signup() {
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
+    console.log(formValues)
     try {
       const { email, password } = formValues;
       await createUserWithEmailAndPassword(firebaseAuth, email, password);
@@ -73,7 +74,7 @@ function Signup() {
               <button onClick={() => setShowPassword(true)}>Get Started</button>
             )}
           </div>
-          {showPassword && <button onClick={handleSignIn}>Log In</button>}
+          {showPassword && <button onClick={handleSignIn}>Sign Up</button>}
         </div>
       </div>
     </Container>
