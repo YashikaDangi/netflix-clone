@@ -92,21 +92,26 @@ const Container = styled.div`
     width: 100vw;
     display: grid;
     grid-template-rows: 15vh 85vh;
+
     .body {
       gap: 1rem;
       .text {
         gap: 1rem;
         text-align: center;
         font-size: 2rem;
+
         h1 {
-          padding: 0 25rem;
+          padding: 0 2rem;
         }
       }
+
       .form {
         display: grid;
         grid-template-columns: ${({ showPassword }) =>
           showPassword ? "1fr 1fr" : "2fr 1fr"};
-        width: 60%;
+        width: 80%;
+        max-width: 600px;
+
         input {
           color: black;
           border: none;
@@ -117,6 +122,7 @@ const Container = styled.div`
             outline: none;
           }
         }
+
         button {
           padding: 0.5rem 1rem;
           background-color: #e50914;
@@ -127,6 +133,7 @@ const Container = styled.div`
           font-size: 1.05rem;
         }
       }
+
       button {
         padding: 0.5rem 1rem;
         background-color: #e50914;
@@ -139,6 +146,70 @@ const Container = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .content {
+      .body {
+        .text {
+          font-size: 1.5rem;
+
+          h1 {
+            padding: 0 1rem;
+          }
+        }
+
+        .form {
+          width: 90%;
+          grid-template-columns: 1fr;
+          gap: 1rem;
+
+          input {
+            padding: 1rem;
+            font-size: 1rem;
+          }
+
+          button {
+            font-size: 1rem;
+          }
+        }
+
+        button {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content {
+      .body {
+        .text {
+          font-size: 1.2rem;
+
+          h1 {
+            padding: 0;
+          }
+        }
+
+        .form {
+          width: 100%;
+          input {
+            padding: 0.8rem;
+            font-size: 0.9rem;
+          }
+
+          button {
+            font-size: 0.9rem;
+          }
+        }
+
+        button {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
 `;
+        
 
 export default Signup;
