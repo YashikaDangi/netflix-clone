@@ -5,25 +5,34 @@ import background from "../assets/login.jpg";
 import { useNavigate } from "react-router-dom";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase-config";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (email, password) => {
     try {
-      await signInWithEmailAndPassword(firebaseAuth, email, password);
+      const response = await fetch("http://localhost:5000/api/user/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("email", email); // Store the email
+        // localStorage.setItem("token", data.token); // Store the JWT token for further authenticated requests
+        navigate("/"); // Navigate to the home page after successful login
+        return data;
+      } else {
+        throw new Error(data.message || "Login failed");
+      }
     } catch (error) {
-      console.log(error.code);
+      console.error("Login error:", error);
+      return { success: false, message: error.message };
     }
   };
-
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/");
-  });
 
   return (
     <Container>
@@ -48,7 +57,8 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
-              <button onClick={handleLogin}>Login to your account</button>
+              {/* Fix: Use an inline function to pass email and password */}
+              <button onClick={() => handleLogin(email, password)}>Login to your account</button>
             </div>
           </div>
         </div>

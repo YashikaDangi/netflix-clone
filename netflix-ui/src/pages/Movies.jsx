@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import CardSlider from "../components/CardSlider";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
@@ -20,22 +18,27 @@ function MoviePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [user, setUser] = useState(undefined);
+
+  // Replace Firebase auth with localStorage check (or JWT validation)
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("email"); // Check if email is stored in localStorage
+    if (loggedInUser) {
+      setUser(loggedInUser); // User is logged in
+    } else {
+      navigate("/login"); // Redirect to login if no user is found
+    }
+  }, [navigate]);
+
   useEffect(() => {
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (genresLoaded) {
       dispatch(fetchMovies({ genres, type: "movie" }));
     }
-  }, [genresLoaded]);
-
-  const [user, setUser] = useState(undefined);
-
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) setUser(currentUser.uid);
-    else navigate("/login");
-  });
+  }, [genresLoaded, genres, dispatch]);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);

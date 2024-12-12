@@ -1,16 +1,20 @@
 
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-const firebaseConfig = {
-  apiKey: "AIzaSyBQyuGL27BxcfMoANl4VlrajA9HZnBPK24",
-  authDomain: "react-netflix-clone-66bfd.firebaseapp.com",
-  projectId: "react-netflix-clone-66bfd",
-  storageBucket: "react-netflix-clone-66bfd.firebasestorage.app",
-  messagingSenderId: "533869631652",
-  appId: "1:533869631652:web:82b6f4313d553b829cee31",
-  measurementId: "G-D98DGWNZM9"
+const API_URL = 'http://localhost:5000'; // URL of your backend
+
+export const signup = async (email, password) => {
+  const response = await fetch(`${API_URL}/signup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  return response.json();
 };
 
-const app = initializeApp(firebaseConfig);
-
-export const firebaseAuth = getAuth(app);
+export const login = async (email, password) => {
+  const response = await fetch(`${API_URL}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  return response.json();
+};

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IoPlayCircleSharp } from "react-icons/io5";
@@ -7,23 +7,27 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
 import axios from "axios";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase-config";
+
+import video from "../assets/video.mp4";
 import { useDispatch } from "react-redux";
 import { removeMovieFromLiked } from "../store";
-import video from "../assets/video.mp4";
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false);
-  const [email, setEmail] = useState(undefined);
+  const [email, setEmail] = useState(undefined); // Change: No Firebase logic
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) {
-      setEmail(currentUser.email);
-    } else navigate("/login");
-  });
+  // Check if user is authenticated on page load and get the email
+  useEffect(() => {
+    // Fetch user data from localStorage or an API
+    const storedEmail = localStorage.getItem("email");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    } else {
+      navigate("/login"); // Redirect to login if no user data
+    }
+  }, [navigate]);
 
   const addToList = async () => {
     try {
@@ -95,7 +99,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
             <div className="genres flex">
               <ul className="flex">
                 {movieData.genres.map((genre) => (
-                  <li>{genre}</li>
+                  <li key={genre}>{genre}</li>
                 ))}
               </ul>
             </div>
@@ -105,6 +109,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
     </Container>
   );
 });
+
 
 const Container = styled.div`
   max-width: 230px;

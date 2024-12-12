@@ -1,19 +1,28 @@
-import { signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
-import { firebaseAuth } from "../utils/firebase-config";
 import { FaPowerOff, FaSearch } from "react-icons/fa";
+
 export default function Navbar({ isScrolled }) {
   const [showSearch, setShowSearch] = useState(false);
   const [inputHover, setInputHover] = useState(false);
+  const navigate = useNavigate();
+
   const links = [
     { name: "Home", link: "/" },
     { name: "TV Shows", link: "/tv" },
     { name: "Movies", link: "/movies" },
     { name: "My List", link: "/mylist" },
   ];
+
+  const handleLogout = () => {
+    // Remove the token and email from localStorage on logout
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    // Redirect to login page
+    navigate("/login");
+  };
 
   return (
     <Container>
@@ -55,7 +64,7 @@ export default function Navbar({ isScrolled }) {
               }}
             />
           </div>
-          <button onClick={() => signOut(firebaseAuth)}>
+          <button onClick={handleLogout}>
             <FaPowerOff />
           </button>
         </div>

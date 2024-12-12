@@ -18,7 +18,7 @@ export default function App() {
         <Route exact path="/tv" element={<TVShows />} />
         <Route exact path="/movies" element={<MoviePage />} />
         <Route exact path="/new" element={<Player />} />
-        <Route exact path="/mylist" element={<UserListedMovies />} />
+        <Route exact path="/mylist" element={<UserListedMovies />} /> 
         <Route exact path="/" element={<Netflix />} />
       </Routes>
     </BrowserRouter>
